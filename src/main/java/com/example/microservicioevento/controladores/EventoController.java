@@ -55,21 +55,23 @@ public class EventoController {
         return ResponseEntity.noContent().build();
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Evento> update(@PathVariable("id") int id, @RequestBody Evento updatedEvento) {
-//        Evento evento = eventoServices.getEventoById(id);
-//        if (evento == null)
-//            return ResponseEntity.notFound().build();
-//
-//
-//        evento.setNombre(updatedEvento.getNombre());
-//        evento.setApellido(updatedEvento.getApellido());
-//        evento.setEmail(updatedEvento.getEmail());
-//        evento.setPassword(updatedEvento.getPassword());
-//        evento.setUsername(updatedEvento.getUsername());
-//
-//        Evento updatedUserEntity = eventoServices.save(evento);
-//
-//        return ResponseEntity.ok(updatedUserEntity);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Evento> update(@PathVariable("id") int id, @RequestBody Evento updatedEvento) {
+        Evento evento = eventoServices.getEventoById(id);
+        if (evento == null)
+            return ResponseEntity.notFound().build();
+
+
+        evento.setIdEncargado(updatedEvento.getIdEncargado());
+        evento.setIdCliente(updatedEvento.getIdCliente());
+        evento.setFechaEvento(updatedEvento.getFechaEvento());
+        evento.setFechaPago(updatedEvento.getFechaPago());
+        evento.setTipoEvento(updatedEvento.getTipoEvento());
+        evento.setIncluirVideo(updatedEvento.isIncluirVideo());
+        evento.setTotal(updatedEvento.getTotal());
+
+        Evento updatedUserEntity = eventoServices.save(evento);
+
+        return ResponseEntity.ok(updatedUserEntity);
+    }
 }
